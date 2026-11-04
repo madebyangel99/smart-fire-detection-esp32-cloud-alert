@@ -73,8 +73,8 @@ void kirimNotifikasiCloud(float suhu, int asap) {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
     
-    String botToken = "9167335881:AAEEzXH6xqQkoihWwEqcUySq1HF0_tjLZa4"; 
-    String chatId = "5241244905";
+    String botToken = "placeholder"; 
+    String chatId = "placeholder";
     
     // Struktur Pesan Darurat 2 Bahasa (URL Encoded)
     // Tampilan hasil akhir di Telegram:
