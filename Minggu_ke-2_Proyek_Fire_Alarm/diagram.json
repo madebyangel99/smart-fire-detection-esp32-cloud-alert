@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Angelita - Fire Alarm Lab-1 (Spacious Layout)",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -120, "left": -200, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btnMode", "top": 150, "left": -150, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-potentiometer", "id": "potAsap", "top": 180, "left": 150, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relaySprinkler", "top": -120, "left": 180, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "rPump", "top": -50, "left": 200, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledPump", "top": -90, "left": 280, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "rFan", "top": 40, "left": 200, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledFanPwm", "top": 0, "left": 280, "attrs": { "color": "blue" } }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", []],
+    [ "esp:RX0", "$serialMonitor:TX", "", []],
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:D4", "blue", [] ],
+    [ "potAsap:VCC", "esp:3V3", "red", [] ],
+    [ "potAsap:GND", "esp:GND.1", "black", [] ],
+    [ "potAsap:SIG", "esp:D34", "purple", [] ],
+    [ "btnMode:1.l", "esp:D15", "gold", [] ],
+    [ "btnMode:2.l", "esp:GND.1", "black", [] ],
+    [ "relaySprinkler:VCC", "esp:VIN", "red", [] ],
+    [ "relaySprinkler:GND", "esp:GND.2", "black", [] ],
+    [ "relaySprinkler:IN", "esp:D26", "green", [] ],
+    [ "esp:D26", "rPump:1", "green", [] ],
+    [ "rPump:2", "ledPump:A", "green", [] ],
+    [ "ledPump:C", "esp:GND.2", "black", [] ],
+    [ "esp:D18", "rFan:1", "cyan", [] ],
+    [ "rFan:2", "ledFanPwm:A", "cyan", [] ],
+    [ "ledFanPwm:C", "esp:GND.2", "black", [] ]
+  ]
+}
