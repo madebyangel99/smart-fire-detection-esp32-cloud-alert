@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "Tasya",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 20, "left": 230, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "potSoil", "top": 100, "left": -190, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btnMode", "top": 200, "left": -90, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-relay-module", "id": "relayPump", "top": -90, "left": -190, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledPump", "top": 110, "left": 330, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "rPump", "top": 170, "left": 310, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledFanPwm", "top": 200, "left": 330, "attrs": { "color": "blue" } },
+    { "type": "wokwi-resistor", "id": "rFan", "top": 260, "left": 310, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledFault", "top": 290, "left": 330, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "rFault", "top": 350, "left": 310, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.2", "black", [] ],
+    [ "dht1:SDA", "esp:D4", "blue", [] ],
+
+    [ "potSoil:VCC", "esp:3V3", "red", [] ],
+    [ "potSoil:GND", "esp:GND.1", "black", [] ],
+    [ "potSoil:SIG", "esp:D34", "purple", [] ],
+
+    [ "btnMode:1.l", "esp:D15", "gold", [] ],
+    [ "btnMode:2.r", "esp:GND.1", "black", [] ],
+
+    [ "relayPump:VCC", "esp:VIN", "red", [] ],
+    [ "relayPump:GND", "esp:GND.1", "black", [] ],
+    [ "relayPump:IN", "esp:D26", "green", [] ],
+
+    [ "esp:D25", "rPump:1", "green", [] ],
+    [ "rPump:2", "ledPump:A", "green", [] ],
+    [ "ledPump:C", "esp:GND.2", "black", [] ],
+
+    [ "esp:D18", "rFan:1", "cyan", [] ],
+    [ "rFan:2", "ledFanPwm:A", "cyan", [] ],
+    [ "ledFanPwm:C", "esp:GND.2", "black", [] ],
+
+    [ "esp:D27", "rFault:1", "orange", [] ],
+    [ "rFault:2", "ledFault:A", "orange", [] ],
+    [ "ledFault:C", "esp:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}
